@@ -1,0 +1,19 @@
+<div ng-controller="FrontEndController">
+  <sidebar-directive></sidebar-directive>
+  <div class="panel layout-panel layout-panel-center" style="left: 150px; top: 30px; width: 1216px;">
+    <div data-options="region:'center',title:'Main Title'" class="panel-body layout-body"
+         style="height: 600px;border-top-width: 1px!important;">
+      <div class="easyui-tabs tabs-container" data-options="fit:true,border:false">
+        <tab-list></tab-list>
+        <div class="tabs-panels tabs-panels-noborder">
+          <div class="panel" ng-repeat="tab in module.tabList track by $index" ng-show="tab==module.currentTab">
+            <div class="panel-body panel-body-noheader panel-body-noborder"
+                 style="padding: 20px;"
+                 ng-include="tab.templateUrl">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

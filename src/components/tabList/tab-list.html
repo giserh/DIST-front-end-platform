@@ -1,0 +1,14 @@
+<div class="tabs-header tabs-header-noborder">
+  <div class="tabs-scroller-left"></div>
+  <div class="tabs-scroller-right"></div>
+  <div class="tabs-wrap" style="margin-left: 0; left: 0;">
+    <ul class="tabs">
+      <li ng-repeat="tab in module.tabList track by $index" ng-class="{'tabs-selected': tab==module.currentTab}">
+        <a href="javascript:void(0)" class="tabs-inner" ng-click="openTab(tab)">
+          <span class="tabs-title tabs-closable">{{tab.title}}</span>
+        </a>
+        <a href="javascript:void(0)" class="tabs-close" ng-show="module.tabList.length>1" ng-click="closeTab(tab)"></a>
+      </li>
+    </ul>
+  </div>
+</div>
