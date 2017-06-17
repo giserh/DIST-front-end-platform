@@ -6,15 +6,22 @@
     </div>
     <div style="height: 544px;" class="panel-body layout-body">
       <div class="easyui-accordion accordion">
-        <div class="panel">
+        <div class="panel" ng-repeat="bar in module.sidebarList track by $index">
           <div class="panel-header accordion-header"
                style="height: 15px;"
                ng-click="openTab(bar)"
-               ng-class="{active: bar==module.currentSidebar}"
-               ng-repeat="bar in module.sidebarList track by $index">
+               ng-class="{active: bar==module.currentSidebar}">
             <div class="panel-title">
               <span class="{{bar.iconClass}}"></span>
               <span>{{bar.title}}</span>
+            </div>
+          </div>
+          <div class="easyui-panel panel-body" style="padding: 10px;" ng-if="bar.subNav.length>0" ng-show="bar.showSubNav">
+            <div class="sub-item"
+                 ng-repeat="subNav in bar.subNav track by $index"
+                 ng-class="{'active': subNav==module.currentSidebar}"
+                 ng-click="openTab(subNav)">
+              {{subNav.title}}
             </div>
           </div>
         </div>

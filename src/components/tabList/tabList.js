@@ -10,6 +10,12 @@ function tabList($rootScope) {
     link() {
       $rootScope.module.tabList = [$rootScope.module.currentTab = $rootScope.module.currentSidebar];
       $rootScope.openTab = function (tab) {
+        if (tab.showSubNav) {
+          return tab.showSubNav = false;
+        } else if(tab.subNav && tab.subNav.length > 0) {
+          return tab.showSubNav = true;
+        }
+
         let isExisted = false;
         for (let item of $rootScope.module.tabList) {
           if (item === tab) {
@@ -51,8 +57,17 @@ function tabList($rootScope) {
 
       function relateTabSidebar() {
         for (let item of $rootScope.module.sidebarList) {
+          if (item.subNav && item.subNav.length > 0) {
+            for (let subItem of item.subNav) {
+              if (subItem.sidebarName === $rootScope.module.currentTab.sidebarName) {
+                $rootScope.module.currentSidebar = subItem;
+                break;
+              }
+            }
+          }
           if (item.sidebarName === $rootScope.module.currentTab.sidebarName) {
             $rootScope.module.currentSidebar = item;
+            break;
           }
         }
       }
